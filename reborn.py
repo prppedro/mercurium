@@ -55,7 +55,7 @@ def log(msg):
         message_type = msg_type(msg)
 
         log_str = ""
-        log_str += msg["from"]["first_name"] + " enviou " + message_type + " "
+        log_str += msg["from"]["first_name"] + "(" + str(msg["from"]["id"]) + ")" + " enviou " + message_type + " "
 
         if origin == "group":
             log_str += "em \"" + msg["chat"]["title"] + "\""

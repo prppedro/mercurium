@@ -6,7 +6,7 @@ def return_statistics(chat):
     chat = str(chat)
     stats = {}
     total = 0
-    result = "PWOERED BU StatTrak™\n\n"
+    result = "*Estatísticas* \n\n"
 
     # Abre e lê o arquivo JSON
     with open("data/stats.json") as fp:
@@ -23,12 +23,33 @@ def return_statistics(chat):
     for user in stats:
         dictofdicts[stats[user]["name"]] = stats[user]["msg_count"]
 
+    # Não sei programar em Python, logo farei a seguinte gambiarra:
+    firstpass = 1;
+    maxalgarismos = 0;
+    primeirovalor = ""
     # Ordena a partir dos valores, de forma decrescente.
     for k, v in sorted(dictofdicts.items(), key=itemgetter(1), reverse=True):
-        result += k + ": " + str(v) + "\n"
+        # Toda esta gambiarra tem o objetivo de deixar o número bonitinho, por sugestão do @thexp
+        if (firstpass == 1):
+            maxalgarismos = len(str(v))
+            primeirovalor = str(v)
+            firstpass = 0
+
+        padding = ""
+
+        if len(str(v)) < maxalgarismos:
+            diff = maxalgarismos - len(str(v))
+            for i in range(0,diff):
+                padding += "  "
+
+        result += padding + str(v) + " - " + k + "\n"
         total += v
 
-    result += "\n\ntootau:::: " + str(total)
+    result += "\nTotal: " + str(total)
+    # result += "\n*Debug*"
+    # result += "\nMaxAlg: " + str(maxalgarismos)
+    # result += "\nPadding: " + str(len(padding))
+    # result += "\nPrimeiro valor: " + primeirovalor
 
     return result
 
