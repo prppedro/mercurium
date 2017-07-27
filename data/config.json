@@ -1,8 +1,9 @@
 {
     "sudoers": [
-        14160874
+        49681384
     ],
     "authorized_users": [
+        49681384,
         14160874,
         16631085,
         52451934,
@@ -10,20 +11,21 @@
         85867003,
         10549434,
         25919148,
-	123123862
+        123123862
     ],
     "enabled_plugins": {
-        "^[!/]steam(?:@PintaoBot)?$": "steam",
-        "^[!/]hltv(?:@PintaoBot)? (\\w+) ?(\\d+)?$": "hltv",
         "^[!/]melenbra(?:@PintaoBot)? ?([0-9]+d)?([0-9]+h)?([0-9]+m)?([0-9]+s)?(?: (.+))?$": "melenbra",
-        "^[!/]img(?:@PintaoBot)? (.*)": "img",
         "^[!/]wunder(?:@PintaoBot)?( (.*) (.*))?$": "wunder",
         "^[!/]plugins(?:@PintaoBot)?( (.*) (.*))?": "plugins",
-        "^[!/]vamojoga(?:@PintaoBot)? (.*) (\\d+)$": "vamojoga",
         "^[!/]qqe(?:@PintaoBot)? (.*)": "qqe",
         "^(.*)$": "multipurpose"
     },
-    "disabled_plugins": {},
+    "disabled_plugins": {
+        "^[!/]steam(?:@PintaoBot)?$": "steam",
+        "^[!/]img(?:@PintaoBot)? (.*)": "img",
+        "^[!/]vamojoga(?:@PintaoBot)? (.*) (\\d+)$": "vamojoga",
+        "^[!/]hltv(?:@PintaoBot)? (\\w+) ?(\\d+)?$": "hltv"
+    },
     "callback_query_plugins": [
         "vamojoga"
     ]

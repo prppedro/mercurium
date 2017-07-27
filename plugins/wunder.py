@@ -53,7 +53,7 @@ def get_satellite_url(place):
 
 
 def process_conditions(conditions):
-    conditions_dict = {
+    '''conditions_dict = {
         "": "pora n sei n da pra ve",
         "Bruma": "VEI TA TD BRAMCO",
         "Céu Limpo": "LINPIN LINPJIN",
@@ -74,8 +74,8 @@ def process_conditions(conditions):
 
     if conditions in conditions_dict:
         return conditions_dict[conditions]
-    else:
-        return conditions
+    else:'''
+    return conditions
 
 
 def generate_string(data):
@@ -91,16 +91,18 @@ def generate_string(data):
     humidity    = conditions["relative_humidity"]
     wind_vel    = conditions["wind_kph"]
     wind_from   = conditions["wind_dir"]
+    dewpoint    = conditions["dewpoint_c"]
 
     header  = ""
     footer  = ""
     now     = datetime.datetime.now()
 
-    header = "EITA PORA a tenps em {} eh d {} con uma sensasaosinha d {}\n".format(cityname, temp_c, feels_c)
-    header += "a parti da estasao meteurolojics la em {} em {}\n".format(station, obs_time[5:])
-    header += "umanidade di {}\n".format(humidity)
-    header += "uns veto vino a {} narizes do retcha/h de {}\n".format(wind_vel, wind_from)
-    header += "atlamente la ta ó::::::: {}".format(process_conditions(weather))
+    header = "Situação metereológica em *{}*\r\n".format(cityname)
+    header += "A temperatura é de {}ºC, com uma sensação térmica de {}ºC\n".format(temp_c, feels_c)
+    header += "com dados da estação meterológica de {}, em {}.\n".format(station, obs_time[5:])
+    header += "Humidade em {}\n".format(humidity)
+    header += "Ventos de {} narizes do retcha/h, de {}\n".format(wind_vel, wind_from)
+    header += "Aspecto: {}".format(process_conditions(weather))
 
     # Se já é noite, pegue a previsão do dia seguinte. (index 0 é hoje, 1 é amanhã)
     if now.hour >= 18:
@@ -109,18 +111,18 @@ def generate_string(data):
         precipitation   = forecast[1]["pop"]
         conditions      = process_conditions(forecast[1]["conditions"])
 
-        footer = "\n\ni sera q vai chove amanh??????\n"
-        footer += "{} con una prporlbindade d presiispatasao d {}\n".format(conditions, precipitation)
-        footer += "másima d {} minim d {}".format(forecast_max , forecast_min)
+        footer = "\n\nTempo amanhã: \n"
+        footer += "{} com una probabilidade de precipitação de {} (unid. desconhecida)\n".format(conditions, precipitation)
+        footer += "Máxima: {}ºC Mínima: {}ºC Ponto do Orvalho: {}ºC".format(forecast_max , forecast_min, dewpoint)
     else:
         forecast_max    = forecast[0]["high"]["celsius"]
         forecast_min    = forecast[0]["low"]["celsius"]
         precipitation   = forecast[0]["pop"]
         conditions      = process_conditions(forecast[0]["conditions"])
 
-        footer = "\n\ni sera q vai chove hj????\n"
-        footer += "{} con una prporlbindade d presiispatasao d {}\n".format(conditions, precipitation)
-        footer += "másima d {} minim d {}".format(forecast_max, forecast_min)
+        footer = "\n\nTempo hoje: \n"
+        footer += "{} com una probabilidade de precipitação de {} (unid. desconhecida)\n".format(conditions, precipitation)
+        footer += "Máxima: {}ºC Mínima: {}ºC Ponto do Orvalho: {}ºC".format(forecast_max, forecast_min, dewpoint)
 
     return header + footer
 
@@ -131,7 +133,7 @@ def on_msg_received(msg, matches):
     location    = resolve_location(user)
 
     if location is None:
-        api.send_message(chat, "vei n sei qaltua cdd..... use */wunder add [estacao]* <<<------- botassua eksltaçao ali rs")
+        api.send_message(chat, "Use */wunder add [estação]* para especificar seu local")
         return
 
     data            = get_conditions_and_forecast(location)

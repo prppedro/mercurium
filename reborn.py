@@ -74,7 +74,8 @@ def is_sudoer(id):
 
 
 def is_authorized(msg):
-    return msg["from"]["id"] in config.config["authorized_users"]
+    '''return msg["from"]["id"] in config.config["authorized_users"]'''
+    return 1;
 
 
 def msg_matches(msg_text):
@@ -134,6 +135,7 @@ def on_callback_query(msg):
 def start_longpoll():
     """ Inicia longpolling do get_updates. """
     most_recent = 0
+    log("Passei por aqui")
 
     while True:
         updates = api.get_updates(offset=most_recent)
