@@ -10,18 +10,18 @@ def on_msg_received(msg, matches):
 
     if command is None and plugin is None:
         string = ""
-        string += "atvdos::::: \n"
+        string += "Ativados: \n"
 
         if len(config.plugins.items()) == 0:
-            string += "neñum rs"
+            string += "Nenhum. "
         else:
             for query, plu in config.plugins.items():
                 string += plu + "✔️ \n"
 
-        string += "\ndesatvsd::: \n"
+        string += "\nDesativados: \n"
 
         if len(config.disabled_plugins.items()) == 0:
-            string += "neñum rs"
+            string += "Nenhum. "
         else:
             for query, plu in config.disabled_plugins.items():
                 string += plu + "❌ \n"
@@ -33,7 +33,7 @@ def on_msg_received(msg, matches):
             for query, plu in config.plugins.items():
                 # Se o plugin passado for encontrado nos plugins ativos, avisa e sai da função.
                 if plugin == plu:
-                    send_message(msg["chat"]["id"], "pora o " + plugin + "ja ta ativado burro")
+                    send_message(msg["chat"]["id"], + plugin + " já está ativado, demônio. ")
                     return
 
             for query, plu in config.disabled_plugins.items():
@@ -44,14 +44,14 @@ def on_msg_received(msg, matches):
                     config.save_config()
                     config.load_config()
 
-                    send_message(msg["chat"]["id"], "ae carai o " + plugin + "agr ativado carai.....")
+                    send_message(msg["chat"]["id"], "O " + plugin + " foi ativado. ")
                     return
 
         elif command == "disable":
             for query, plu in config.disabled_plugins.items():
                 # Se o plugin passado for encontrado nos plugins desativados, avisa e sai da função.
                 if plugin == plu:
-                    send_message(msg["chat"]["id"], "pora o " + plugin + " ja ta disativado burro")
+                    send_message(msg["chat"]["id"], "O " + plugin + " já está inoperante... ")
                     return
 
             for query, plu in config.plugins.items():
@@ -62,5 +62,5 @@ def on_msg_received(msg, matches):
                     config.save_config()
                     config.load_config()
 
-                    send_message(msg["chat"]["id"], "ae carai o " + plugin + "agr disisativado carai.....")
+                    send_message(msg["chat"]["id"], "O " + plugin + " fora desativado. ")
                     return

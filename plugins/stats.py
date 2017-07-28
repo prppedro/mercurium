@@ -6,7 +6,7 @@ def return_statistics(chat):
     chat = str(chat)
     stats = {}
     total = 0
-    result = "*Estatísticas* \n\n"
+    result = "*Mensagens* \n\n"
 
     # Abre e lê o arquivo JSON
     with open("data/stats.json") as fp:
