@@ -108,3 +108,19 @@ def send_sticker(chat_id, sticker_id):
     response = json.loads(response.content)
 
     return response
+
+# Vê se o caboclo pertence a tal grupo
+def isGroupMember(chat_id, user_id):
+    url = "https://api.telegram.org/" + os.environ['REBORNKEY'] + "/getChatMember?"
+    url += "chat_id=" + str(chat_id) + "&"
+    url += "user_id=" + str(user_id)
+
+    response = requests.get(url)
+    jresponse = json.loads(response.content)
+
+    #return response
+    if (response.status_code == 200):
+        return "1"
+    else:
+        return "0"
+

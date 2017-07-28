@@ -74,8 +74,17 @@ def is_sudoer(id):
 
 
 def is_authorized(msg):
-    '''return msg["from"]["id"] in config.config["authorized_users"]'''
-    return 1;
+
+    if (msg["from"]["id"] in config.config["authorized_users"]):
+        return 1
+    else:
+        # Como eu não sei a ID de todos os indivíduos romanos, resolvi fazer uma query para ver se o caboclo
+        # pertence ao chat...
+        # TODO: Criar um modo de adicionar o caboclo à lista de permissões
+        if(api.isGroupMember(msg["chat"]["id"], msg["from"]["id"])):
+            return 1
+        else:
+            return 0
 
 
 def msg_matches(msg_text):
