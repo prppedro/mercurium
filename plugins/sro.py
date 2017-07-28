@@ -48,7 +48,7 @@ def on_msg_received(msg, matches):
 
             status += "\n\n"
 
-            # Continuará
+        # Continuará
         imagem = "http://www2.correios.com.br/" + ensopado.img['src']
 
         send_photo(msg["chat"]["id"], str(imagem))
