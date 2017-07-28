@@ -28,7 +28,7 @@ def on_msg_received(msg, matches):
             classe = span["class"][0]
 
             # definicao += "```" + str(span['class']) + " = " + str(span.findAll(text = True)) + "```"
-            # Alta preguiça de definir o que acontece aqui...
+            # Trata do caso em que existe mais de uma acepção
             if classe == "cabeco":
                 if cabecoAnterior is False:
                     if cabecoCounter > 0:
@@ -44,7 +44,10 @@ def on_msg_received(msg, matches):
 
             if classe == "sepsil":
                 # Gambiarrinha para conseguir pegar a sílaba tônica
+                # Na verdade, não funciona direito, parece... Depois tento entender o porquê
                 tonica = span.find("em", text = True)
+                # Para dar espaço entre o termo e a separação silábica
+                definicao += " "
 
                 for sil in texto:
                     if sil == tonica:
@@ -64,7 +67,7 @@ def on_msg_received(msg, matches):
                 definicao += "```{}```\r\n".format(texto[0])
 
             if classe == "numdef":
-                definicao += "*{}* ".format(texto[0])
+                definicao += "    *{}* ".format(texto[0])
 
             if classe == "rubrica" or classe == "regio" or classe == "uso":
                 definicao += "_{}_ ".format(texto[0])

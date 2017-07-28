@@ -31,6 +31,7 @@
         "^[!/]plugins(?:@PintaoBot)?( (.*) (.*))?": "plugins",
         "^[!/]qqe(?:@PintaoBot)? (.*)": "qqe",
         "^[!/]aulete(?:@PintaoBot)? (.*)": "aulete",
+        "^[!/]sro(?:@PintaoBot)? (.*)": "sro",
         "^(.*)$": "multipurpose"
     },
     "disabled_plugins": {
