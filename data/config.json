@@ -30,6 +30,7 @@
         "^[!/]wunder(?:@PintaoBot)?( (.*) (.*))?$": "wunder",
         "^[!/]plugins(?:@PintaoBot)?( (.*) (.*))?": "plugins",
         "^[!/]qqe(?:@PintaoBot)? (.*)": "qqe",
+        "^[!/]aulete(?:@PintaoBot)? (.*)": "aulete",
         "^(.*)$": "multipurpose"
     },
     "disabled_plugins": {
