@@ -26,19 +26,19 @@
         78977189
     ],
     "enabled_plugins": {
-        "^[!/]melenbra(?:@PintaoBot)? ?([0-9]+d)?([0-9]+h)?([0-9]+m)?([0-9]+s)?(?: (.+))?$": "melenbra",
-        "^[!/]wunder(?:@PintaoBot)?( (.*) (.*))?$": "wunder",
-        "^[!/]plugins(?:@PintaoBot)?( (.*) (.*))?": "plugins",
-        "^[!/]qqe(?:@PintaoBot)? (.*)": "qqe",
-        "^[!/]aulete(?:@PintaoBot)? (.*)": "aulete",
-        "^[!/]sro(?:@PintaoBot)? (.*)": "sro",
+        "^[!/]melembra(?:@MercuriumBot)? ?([0-9]+d)?([0-9]+h)?([0-9]+m)?([0-9]+s)?(?: (.+))?$": "melenbra",
+        "^[!/]wunder(?:@MercuriumBot)?( (.*) (.*))?$": "wunder",
+        "^[!/]plugins(?:@MercuriumBot)?( (.*) (.*))?": "plugins",
+        "^[!/]qqe(?:@MercuriumBot)? (.*)": "qqe",
+        "^[!/]aulete(?:@MercuriumBot)? (.*)": "aulete",
+        "^[!/]sro(?:@MercuriumBot)? (.*)": "sro",
         "^(.*)$": "multipurpose"
     },
     "disabled_plugins": {
-        "^[!/]steam(?:@PintaoBot)?$": "steam",
-        "^[!/]img(?:@PintaoBot)? (.*)": "img",
-        "^[!/]vamojoga(?:@PintaoBot)? (.*) (\\d+)$": "vamojoga",
-        "^[!/]hltv(?:@PintaoBot)? (\\w+) ?(\\d+)?$": "hltv"
+        "^[!/]steam(?:@MercuriumBot)?$": "steam",
+        "^[!/]img(?:@MercuriumBot)? (.*)": "img",
+        "^[!/]vamojoga(?:@MercuriumBot)? (.*) (\\d+)$": "vamojoga",
+        "^[!/]hltv(?:@MercuriumBot)? (\\w+) ?(\\d+)?$": "hltv"
     },
     "callback_query_plugins": [
         "vamojoga"

@@ -31,21 +31,21 @@ def get_ids():
 
 def translate_persona_state(state):
     if state is 0:
-        return "oflain"
+        return "Offline"
     elif state is 1:
-        return "omlain"
+        return "Online"
     elif state is 2:
-        return "o cu paod"
+        return "Ocupado"
     elif state is 3:
-        return "auei"
+        return "AFK"
     elif state is 4:
-        return "durmino MAS Q DORMINHIOC"
+        return "Dormindo"
     elif state is 5:
-        return "kereno troka"
+        return "quer comerciar"
     elif state is 6:
-        return "kereno joga"
+        return "quer jogar"
     else:
-        return "alguam coisa q n sei"
+        return "sem status específico"
 
 
 def query_steam():

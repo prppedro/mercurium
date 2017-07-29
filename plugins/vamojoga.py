@@ -28,7 +28,7 @@ class Voting:
         members = ""
 
         if self.number_going() == 0:
-            members = "ninggme"
+            members = "Ninguém... "
         else:
             for user in self.going:
                 members += "*" + user + "*\n"
@@ -37,8 +37,8 @@ class Voting:
 
     def generate_str(self):
         str = ""
-        str += "VAMO JOGA " + self.gamename.upper() + " CARAI VCSC TNE 3 MISNUTOS\n\n"
-        str += "QUEM VAI::::\n"
+        str += "Bora jogar " + self.gamename.upper() + ". Três minutos para vocês se decidirem... \n\n"
+        str += "Quem já vai: \n"
 
         return str + self.going_as_str()
 
@@ -62,11 +62,11 @@ def finishVoting(reason=0):
         log("Terminando votação...")
 
         if reason == 0:
-            send_message(voting.chatid, "acabando com esta merda de votacao......")
-            edit_message_text(voting.chatid, voting.msg_id, "cabo esta merda")
+            send_message(voting.chatid, "Finalizando votação.")
+            edit_message_text(voting.chatid, voting.msg_id, "Votação encerrada")
         elif reason == 1:
-            send_message(voting.chatid, "AE CARAI AGR A VAO JOGA TEU" + voting.gamename + ".....")
-            edit_message_text(voting.chatid, voting.msg_id, "cabo a votasao i todos jogo felis para senpre.....\n\nQUEM VAI::::\n" + voting.going_as_str())
+            send_message(voting.chatid, "PARABAINS! Decidiram que vão jogar " + voting.gamename + ".....")
+            edit_message_text(voting.chatid, voting.msg_id, "Votação encerrada.\n\nOs vacilões que vão jogar:\n" + voting.going_as_str())
 
         started(False)
         voting.reset()
@@ -80,7 +80,7 @@ def startVoting():
 
 def on_msg_received(msg, matches):
     if started():
-        send_message(msg["chat"]["id"], "ja ten una votasoao aocntecnedo agro ak porra")
+        send_message(msg["chat"]["id"], "Calma, que já tá rolando uma votação aqui... ")
     else:
         log("Iniciando votação pra jogar " + matches.group(1) + "...")
         started(True)

@@ -2,6 +2,8 @@ import json
 import time
 import sched
 
+# Esta classe mantém o nome de "melenbra" por questão de legado
+
 from api import send_message
 
 scheduler = sched.scheduler(time.time, time.sleep)
@@ -60,7 +62,7 @@ def check_time():
     for chat in reminders:
         for date in reminders[chat]:
             if float(date) < time.time():
-                send_message(chat, "O  MEU JA DEU ORA D " + reminders[chat][date])
+                send_message(chat, "ESTÀ NA HORA DE " + reminders[chat][date])
                 # print(reminders[chat][date])
                 reminders[chat].pop(date)
 
@@ -114,7 +116,7 @@ def on_msg_received(msg, matches):
 
     futuretime = time.localtime(futuretime)
 
-    response = "belesinhaaaaa vo lenbra dia " + time.strftime("%d/%m/%y as %H:%M:%S", futuretime) + " sobr \"" + message + "\""
+    response = "Okay, lembrarei em " + time.strftime("%d/%m/%y as %H:%M:%S", futuretime) + " sobre \"" + message + "\""
     send_message(chat, response)
 
 

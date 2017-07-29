@@ -28,28 +28,31 @@ def on_msg_received(msg, matches):
             # retorna um array contendo várias strings da segunda coluna
             natureza = evento.findAll("td")[1].findAll(text = True)
 
-            if len(natureza) > 3:
-                status += "*{}* {}".format(natureza[1].strip(), natureza[3].strip())
-            else:
-                status += "*{}*".format(natureza[1].strip())
-            status += "\n"
-
             # O lascado, agora, é que a porcaria da interface dos correios usa <label>
             # em alguns nomes de cidade. O que significa que o índice dois em diante é,
             # geralmente, uma bagunça... O jeito é concatená-los e arrancar os espaços
             # em branco...
-            status += localhora[0].strip() + " às " + localhora[1].strip()
-            status += " em "
+            status += "`" + localhora[1].strip() + " " + localhora[0].strip() + "`"
+            status += "\n"
+
+            if len(natureza) > 3:
+                status += "*{} {}*".format(natureza[1].strip(), natureza[3].strip())
+            else:
+                status += "*{}*".format(natureza[1].strip())
+            status += "\n"
 
             if len(localhora) > 4:
-                status += localhora[3].strip()
+                status += "_" + localhora[3].strip() + "_"
             else:
-                status += localhora[2].strip()
+                status += "_" + localhora[2].strip() + "_"
 
             status += "\n\n"
 
         # Continuará
-        imagem = "http://www2.correios.com.br/" + ensopado.img['src']
 
-        send_photo(msg["chat"]["id"], str(imagem))
+        # O @thexp achou que a imagem ficava muito feia...
+        # Pior que é verdade...
+        #imagem = "http://www2.correios.com.br/" + ensopado.img['src']
+
+        #send_photo(msg["chat"]["id"], str(imagem))
         send_message(msg["chat"]["id"], status)
