@@ -9,9 +9,10 @@ def get_updates(offset=0, timeout=60):
     url += "timeout=" + str(timeout) + "&"
 
     try:
-        response = requests.get(url)
-        response = json.loads(response.content)
-    except Exception:
+        # Tive de fazer esta substituição para o código funcionar em Pythons anteriores ao 3.6
+        response = requests.get(url).json()
+    except Exception as e:
+        print(e)
         return None
 
     if response["ok"] is True:
@@ -31,8 +32,7 @@ def send_message(chat_id, text, parse_mode="Markdown", reply_to_message_id="", r
     if reply_markup:
         url += "reply_markup=" + str(reply_markup)
 
-    response = requests.get(url)
-    response = json.loads(response.content)
+    response = requests.get(url).json()
 
     return response
 
@@ -49,8 +49,7 @@ def edit_message_text(chat_id, msg_id, text, parse_mode="Markdown", reply_to_mes
     if reply_markup:
         url += "reply_markup=" + str(reply_markup)
 
-    response = requests.get(url)
-    response = json.loads(response.content)
+    response = requests.get(url).json()
 
     return response
 
@@ -60,8 +59,7 @@ def delete_message(chat_id, msg_id):
     url += "chat_id=" + str(chat_id) + "&"
     url += "message_id=" + str(msg_id)
 
-    response = requests.get(url)
-    response = json.loads(response.content)
+    response = requests.get(url).json()
 
     return response
 
@@ -77,8 +75,7 @@ def send_photo(chat_id, photo_url, caption="", reply_to_message_id=0):
     if reply_to_message_id:
         url += "reply_to_message_id=" + str(reply_to_message_id) + "&"
 
-    response = requests.get(url)
-    response = json.loads(response.content)
+    response = requests.get(url).json()
 
     return response
 
@@ -94,8 +91,7 @@ def send_document(chat_id, document_url, caption="", reply_to_message_id=0):
     if reply_to_message_id:
         url += "reply_to_message_id=" + str(reply_to_message_id) + "&"
 
-    response = requests.get(url)
-    response = json.loads(response.content)
+    response = requests.get(url).json()
 
     return response
 
@@ -104,8 +100,7 @@ def send_sticker(chat_id, sticker_id):
     url += "chat_id=" + str(chat_id) + "&"
     url += "sticker=" + sticker_id + "&"
 
-    response = requests.get(url)
-    response = json.loads(response.content)
+    response = requests.get(url).json()
 
     return response
 
@@ -115,8 +110,7 @@ def isGroupMember(chat_id, user_id):
     url += "chat_id=" + str(chat_id) + "&"
     url += "user_id=" + str(user_id)
 
-    response = requests.get(url)
-    jresponse = json.loads(response.content)
+    response = requests.get(url).json()
 
     #return response
     if (response.status_code == 200):

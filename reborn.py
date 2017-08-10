@@ -144,7 +144,6 @@ def on_callback_query(msg):
 def start_longpoll():
     """ Inicia longpolling do get_updates. """
     most_recent = 0
-    log("Passei por aqui")
 
     while True:
         updates = api.get_updates(offset=most_recent)
