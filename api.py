@@ -11,6 +11,7 @@ def get_updates(offset=0, timeout=60):
     try:
         # Esta substituição deixa o código mais compacto e não dá confusão
         # na hora do retorno, quando trabalhando em versões com a 3.4 e 3.5
+        # Enfim, não sei... Mas funciona.
         response = requests.get(url).json()
     except Exception as e:
         print(e)
