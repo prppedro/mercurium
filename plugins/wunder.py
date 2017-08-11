@@ -4,6 +4,7 @@ import datetime
 import json
 import requests
 import api
+import urllib.parse
 
 gUrlConditions  = "http://api.wunderground.com/api/dbcee4e7c140bb2d/lang:BR/conditions/forecast/q/"
 gUrlSatellite   = "http://api.wunderground.com/api/dbcee4e7c140bb2d/animatedsatellite/q/"
@@ -40,10 +41,12 @@ def resolve_location(user_id):
 
 def get_conditions_and_forecast(place):
     url = gUrlConditions
-    url += place + ".json"
+    url += urllib.parse.quote(place) + ".json"
 
     response = requests.get(url)
     response = json.loads(response.content)
+    print(url)
+    print(str(response))
 
     return response
 
@@ -77,8 +80,23 @@ def process_conditions(conditions):
     else:'''
     return conditions
 
+def check_data(data):
+    '''
+    Às vezes a saída é um erro ou uma lista de resultados
+    :param data:
+    :return:
+    '''
+    if "current_observation" in data:
+        return generate_string(data)
+    elif "results" in data["response"]:
+        return "Múltiplos resultados"
+    elif "error" in data["response"]:
+        return "Deu merda" #~~provisório~~
+    return "Deu algum outro B.O. qualquer aqui"
 
 def generate_string(data):
+    if "current_observation" not in data:
+        print("talbot")
     conditions  = data["current_observation"]
     forecast    = data["forecast"]["simpleforecast"]["forecastday"]
 
@@ -130,7 +148,10 @@ def generate_string(data):
 def on_msg_received(msg, matches):
     chat        = msg["chat"]["id"]
     user        = msg["from"]["id"]
-    location    = resolve_location(user)
+    if str(matches.group(1)) == "":
+        location = resolve_location(user)
+    else:
+        location = matches.group(1)
 
     if location is None:
         api.send_message(chat, "Use */wunder add [estação]* para especificar seu local")
@@ -138,7 +159,7 @@ def on_msg_received(msg, matches):
 
     data            = get_conditions_and_forecast(location)
     satellite_img   = get_satellite_url(location)
-    message         = generate_string(data)
+    message         = check_data(data)
 
     api.send_document(chat, satellite_img)
     api.send_message(chat, message)
