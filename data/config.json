@@ -38,7 +38,8 @@
         "^[!/]steam(?:@MercuriumBot)?$": "steam",
         "^[!/]img(?:@MercuriumBot)? (.*)": "img",
         "^[!/]vamojoga(?:@MercuriumBot)? (.*) (\\d+)$": "vamojoga",
-        "^[!/]hltv(?:@MercuriumBot)? (\\w+) ?(\\d+)?$": "hltv"
+        "^[!/]hltv(?:@MercuriumBot)? (\\w+) ?(\\d+)?$": "hltv",
+        "^[!/]partidas(?:@MercuriumBot)? (\\d\\w\\d\\w)-(\\d\\d?)(?: ([0-2]))?$": "partidas"
     },
     "callback_query_plugins": [
         "vamojoga"
