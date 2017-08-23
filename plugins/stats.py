@@ -1,6 +1,15 @@
 from operator import itemgetter
 from os import path
 import json
+from api import send_message
+
+# Isso deve ser suficiente para transplantar as estatísticas para
+# um plugin independente
+def on_msg_received(msg, matches):
+    chat = msg["chat"]["id"]
+
+    result = return_statistics(chat)
+    send_message(chat, result)
 
 # TODO: estatísticas por horário
 def return_statistics(chat):

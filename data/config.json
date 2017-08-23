@@ -32,6 +32,7 @@
         "^[!/]qqe(?:@MercuriumBot)? (.*)": "qqe",
         "^[!/]aulete(?:@MercuriumBot)? (.*)": "aulete",
         "^[!/]sro(?:@MercuriumBot)? (.*)": "sro",
+        "^[!/]stats(?:@MercuriumBot)?$": "stats",
         "^(.*)$": "multipurpose"
     },
     "disabled_plugins": {

@@ -1,9 +1,15 @@
 # Plugin mais feio do mundo, mas é só pra um chat específico.
 # Aqui temos comandos que são pequenos demais pra terem seu próprio módulo.
 
-# Como esse plugin é ativado por todas as mensagens, o /stats também funcionará por aqui.
+# O stats fora inicialmente implementado aqui, depois fora transferido [Tadeu, 23/Ago]
 
 # A maioria é um port bem rápido de https://github.com/lucasberti/telegrao/blob/master/plugins/taup.lua
+
+# Este plugin é, de certa maneira, uma aberração, porque precisa ser processado
+# por último e geralmente dá problema quando alguém desativa/ativa comando pelo
+# !plugin [cycrano]... Idealmente, eu me livraria deste plugin, mas ele tem lá
+# seus usos, então talvez eu tenha de dar um jeito de o multipurpose ser invo-
+# cado diretamente pelo reborn ao invés de ser listado no config... [Tadeu, 23/Ago]
 
 from api import send_message, send_sticker
 from random import randint
