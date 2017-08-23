@@ -88,9 +88,9 @@ def on_msg_received(msg, matches):
         letreiroVolta = ensopado.find("span", id="lblLetreiroTS").getText()
 
         dia = "Dias úteis"
-        if diaDeHoje == 5:
+        if tipoDia == "1":
             dia = "Sábados"
-        elif diaDeHoje == 6:
+        elif tipoDia == "2":
             dia = "Domingos e feriados"
         saida = "*{}-{}* - *{}* ({}) \nHorários para a viagem de ida, a partir de _{}_\n\n" \
             .format(linha, variante, letreiroIda, dia, letreiroVolta)
@@ -115,7 +115,4 @@ def on_msg_received(msg, matches):
 
         send_message(msg["chat"]["id"], erro)
 
-    print(output.request.headers)
-
-    print(saida)
     send_message(msg["chat"]["id"], saida)

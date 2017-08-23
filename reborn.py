@@ -108,7 +108,8 @@ def on_msg_received(msg):
     if is_authorized(msg):
         log(msg)
 
-        if msg_type(msg) == "text":
+        tipo = msg_type(msg)
+        if tipo == "text":
             plugin_match, matches = msg_matches(msg["text"])
 
             if plugin_match is not None and matches is not None:
@@ -125,10 +126,33 @@ def on_msg_received(msg):
                         api.send_message(sudoer, "ME CAPOTARO AQUI PORRA \n\n" + printable)
 
                     raise
+        elif tipo != "text" and tipo != "outra coisa":
+            # Garante as estatísticas para o que não for texto
+            stt = importlib.import_module("plugins.stats")
+            stt.do_statistics(msg)
+            # Eu provavelmente deveria fazer um tratamento de erros aqui, mas o
+            # plugin em questão é meio que parte do core, então tanto faz...
+
 
     else:
         log("Mensagem não autorizada de " + msg["from"]["first_name"] + " (" + str(msg["from"]["id"]) + ")")
 
+def on_old_msg_received(msg):
+    """ Callback pra quando uma mensagem ANTIGA é recebida. """
+
+    if is_authorized(msg):
+        log(msg)
+
+        tipo = msg_type(msg)
+
+        # Tudo vira estatística...
+        if tipo != "outra coisa":
+            # Mensagens antigas são postas nas estatísticas
+            stt = importlib.import_module("plugins.stats")
+            stt.do_statistics(msg)
+
+    else:
+        log("Mensagem não autorizada de " + msg["from"]["first_name"] + " (" + str(msg["from"]["id"]) + ")")
 
 def on_msg_edited(msg):
     """ Callback que define o que acontecerá quando uma mensagem for editada. """
@@ -157,8 +181,13 @@ def start_longpoll():
                     on_msg_edited(update["edited_message"])
                 elif "callback_query" in update:
                     on_callback_query(update["callback_query"])
+                elif "message" in update and timegm(gmtime()) - update["message"]["date"] > 10:
+                    # Mensagens antigas poderão ser processadas...
+                    # A priori, isto servirá para manter estatísticas mesmo
+                    # quanto o bot não conseguir se manter online
+                    on_old_msg_received(update["message"])
                 else:
-                    log("Mensagem muito antiga ou desconhecida; ignorando.")
+                    log("Mensagem desconhecida; ignorando.")
 
                 most_recent = update["update_id"] + 1
 

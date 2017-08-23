@@ -7,6 +7,7 @@
 
 from api import send_message, send_sticker
 from random import randint
+import socket
 import re
 import plugins.stats as stats
 import plugins.ed as ed
@@ -28,8 +29,12 @@ def on_msg_received(msg, matches):
     match = pattern.search(text)
 
     if match:
-        send_message(chat, "64.137.208.17")
-
+        # A versão original retornava um IP hardcodded
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("208.67.222.222", 80))
+        ip = s.getsockname()[0]
+        send_message(chat, ip)
+        s.close()
 
     # /mps
     pattern = re.compile("^[!/]mps(?:@PintaoBot)?$")
@@ -54,7 +59,7 @@ def on_msg_received(msg, matches):
 
     if match:
         send_message(chat, "@berti @beaea @getulhao @rauzao @xisteaga @axasdas @Garzarella")
-
+    # TODO: fazer esta listagem de modo dinâmico e, talvez, por plugin
 
     # calma
     pattern = re.compile("^calma$")
@@ -65,33 +70,9 @@ def on_msg_received(msg, matches):
 
 
     # vc esta ai
-    pattern = re.compile("^vc esta ai$")
+    pattern = re.compile("^Ping$")
     match = pattern.search(text)
 
     if match:
-        send_message(chat, "SIM, TÔ AQUI PORA")
+        send_message(chat, "Pong")
 
-
-    # celso
-    pattern = re.compile("^[!/]historia(?:@PintaoBot)?$")
-    match = pattern.search(text)
-
-    if match:
-        send_message(chat, "youtube.com/watch?v=ZkwdNcrIbxs")
-
-
-    # rau
-    pattern = re.compile("^axasdas$")
-    match = pattern.search(text)
-
-    if match:
-        send_sticker(chat, "CAADBQADgAADDGCzCL91O-bq3xxEAg")
-        send_message(chat, "?")
-
-
-    # rau
-    pattern = re.compile("^rau$")
-    match = pattern.search(text)
-
-    if match:
-        send_message(chat, "meu pau no seu cu")

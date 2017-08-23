@@ -2,6 +2,7 @@ from operator import itemgetter
 from os import path
 import json
 
+# TODO: estatísticas por horário
 def return_statistics(chat):
     chat = str(chat)
     stats = {}
@@ -53,7 +54,7 @@ def return_statistics(chat):
 
     return result
 
-
+# TODO: estatísticas por horário
 def do_statistics(msg):
     chat_id = str(msg["chat"]["id"])
     from_id = str(msg["from"]["id"])
