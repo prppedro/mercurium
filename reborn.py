@@ -90,7 +90,7 @@ def is_authorized(msg):
 def msg_matches(msg_text):
     for query, plugin in config.plugins.items():
         pattern = re.compile(query)
-        ###print(query)
+        print(query)
         match = pattern.search(msg_text)
 
         if match:
@@ -99,8 +99,9 @@ def msg_matches(msg_text):
 
             return plugin, match
 
-    return None, None
-
+    # Hardcodando o plugin multipurpose, para evitar
+    # que ele continue causando problemas ao comando !plugin
+    return "multipurpose", ""
 
 def on_msg_received(msg):
     """ Callback pra quando uma mensagem é recebida. """
