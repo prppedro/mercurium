@@ -13,7 +13,7 @@
 
 from api import send_message, send_sticker
 from random import randint
-import socket
+import requests
 import re
 import plugins.stats as stats
 import plugins.ed as ed
@@ -36,11 +36,25 @@ def on_msg_received(msg, matches):
 
     if match:
         # A versão original retornava um IP hardcodded
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("208.67.222.222", 80))
-        ip = s.getsockname()[0]
-        send_message(chat, ip)
-        s.close()
+        # Esta se conecta a um serviço de checkagem de IP externo
+        ipregex = re.compile("(\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3})")
+        url = "http://checkip.dyndns.com/"
+        saida = ""
+
+        try:
+            req = requests.get(url)
+            body = str(req.content)
+            ipmatch = ipregex.search(body)
+
+            if ipmatch:
+                saida = ipmatch[0]
+            else:
+                saida = "Sei lá, deu algum outro pau aqui... "
+
+        except Exception as e:
+            saida = str(e)
+
+        send_message(chat, saida)
 
     # /mps
     pattern = re.compile("^[!/]mps(?:@PintaoBot)?$")
