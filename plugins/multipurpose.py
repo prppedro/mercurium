@@ -11,7 +11,7 @@
 # seus usos, então talvez eu tenha de dar um jeito de o multipurpose ser invo-
 # cado diretamente pelo reborn ao invés de ser listado no config... [Tadeu, 23/Ago]
 
-from api import send_message, send_sticker
+from api import send_message, send_audio_id, send_sticker
 from random import randint
 import requests
 import re
@@ -93,3 +93,9 @@ def on_msg_received(msg, matches):
     if match:
         send_message(chat, "meu pau no seu cu")
 
+    # Contribuição de Humberto
+    pattern = re.compile("^!+$")
+    match = pattern.search(text)
+
+    if match:
+        send_audio_id(chat, "CQADAQADFQAD4CAoRdcd4TJB2ecNAg")

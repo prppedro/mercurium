@@ -65,6 +65,9 @@ def log(msg):
         if message_type == "text":
             log_str += ": " + msg["text"]
 
+        #if message_type == "audio":
+        #    print(msg)
+
         logging.info(log_str)
         print(log_str)
 
