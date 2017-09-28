@@ -130,8 +130,8 @@ def isGroupMember(chat_id, user_id):
     response = requests.get(url).json()
 
     #return response
-    if (response.status_code == 200):
-        return "1"
+    if (response['ok'] == True):
+        return True
     else:
-        return "0"
+        return False
 
