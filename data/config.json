@@ -32,11 +32,11 @@
         "^[!/]qqe(?:@MercuriumBot)? (.*)": "qqe",
         "^[!/]aulete(?:@MercuriumBot)? (.*)": "aulete",
         "^[!/]sro(?:@MercuriumBot)? (.*)": "sro",
-        "^[!/]stats(?:@MercuriumBot)?$": "stats"
+        "^[!/]stats(?:@MercuriumBot)?$": "stats",
+        "^[!/]img(?:@MercuriumBot)? (.*)": "img"
     },
     "disabled_plugins": {
         "^[!/]steam(?:@MercuriumBot)?$": "steam",
-        "^[!/]img(?:@MercuriumBot)? (.*)": "img",
         "^[!/]vamojoga(?:@MercuriumBot)? (.*) (\\d+)$": "vamojoga",
         "^[!/]hltv(?:@MercuriumBot)? (\\w+) ?(\\d+)?$": "hltv",
         "^[!/]partidas(?:@MercuriumBot)? (\\d\\w\\d\\w)-(\\d\\d?)(?: ([0-2]))?$": "partidas"

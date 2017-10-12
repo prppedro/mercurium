@@ -1,5 +1,7 @@
 from operator import itemgetter
 from os import path
+from os import environ
+import requests
 import json
 from api import send_message
 
@@ -75,11 +77,11 @@ def do_statistics(msg):
         with open("data/stats.json") as fp:
             stats = json.load(fp)
 
-    # Checa se há key do chat no objeto. Se não existir, cria.
+        # Checa se há key do chat no objeto. Se não existir, cria.
     if not chat_id in stats:
         stats[chat_id] = {}
 
-    # Se existir key do usuário no obj do chat, atualiza. Caso contrário, cria.
+        # Se existir key do usuário no obj do chat, atualiza. Caso contrário, cria.
     if from_id in stats[chat_id]:
         stats[chat_id][from_id]["msg_count"] += 1
     else:
@@ -87,6 +89,6 @@ def do_statistics(msg):
         stats[chat_id][from_id]["msg_count"] = 1
         stats[chat_id][from_id]["name"] = name
 
-    # Abre e salva o arquivo JSON
+        # Abre e salva o arquivo JSON
     with open("data/stats.json", "w") as fp:
         json.dump(stats, fp, indent=4, sort_keys=True)
