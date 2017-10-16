@@ -2,6 +2,12 @@ from api import send_message, send_photo
 import requests
 import bs4
 
+#######################################################
+#### LEGACY: Não está mais em uso. Ver multisro.py ####
+#######################################################
+
+# Código original: julho de 2017                      #
+
 def on_msg_received(msg, matches):
     url = "http://www2.correios.com.br/sistemas/rastreamento/newprint.cfm"
     headers = {'User-Agent': 'Nokia6630/1.0 (2.3.129) SymbianOS/8.0 Series60/2.6 Profile/MIDP-2.0 Configuration/CLDC-1.1'}

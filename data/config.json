@@ -31,7 +31,7 @@
         "^[!/]plugins(?:@MercuriumBot)?( (.*) (.*))?": "plugins",
         "^[!/]qqe(?:@MercuriumBot)? (.*)": "qqe",
         "^[!/]aulete(?:@MercuriumBot)? (.*)": "aulete",
-        "^[!/]sro(?:@MercuriumBot)? (.*)": "sro",
+        "^[!/]sro(?:@MercuriumBot)? (.*)": "multisro",
         "^[!/]stats(?:@MercuriumBot)?$": "stats",
         "^[!/]img(?:@MercuriumBot)? (.*)": "img"
     },
