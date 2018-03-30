@@ -80,14 +80,31 @@ def is_authorized(msg):
 
     if msg["from"]["id"] in config.config["authorized_users"]:
         return True
+    elif msg["from"]["id"] in config.config["automatically_authorized_users"]:
+        return True # Para usuários autorizados automaticamente com base no pertencimento
+                    # a grupos. Por ora, só podem ser removidos manualmente
     else:
         # Como eu não sei a ID de todos os indivíduos romanos, resolvi fazer uma query para ver se o caboclo
         # pertence ao chat...
-        # TODO: Criar um modo de adicionar o caboclo à lista de permissões
-        if api.isGroupMember(msg["chat"]["id"], msg["from"]["id"]) is True:
+
+        if isAuthorizedGroupMember(msg["from"]["id"]) is True:
+            # Adiciona o indivíduo de vez, economizando essa consulta burra e redundante
+            config.config["automatically_authorized_users"].append(msg["from"]["id"])
+            config.save_config()
             return True
         else:
             return False
+
+
+# Verifica se o caboclo faz parte de algum dos chats autorizados
+def isAuthorizedGroupMember(user_id):
+
+    for gid in config.config["authorized_chats"]:
+        if api.isGroupMember(gid, user_id):
+            return True
+
+    return False # Solução estranha, porém funcional e razoavelmente elegante
+
 
 
 def msg_matches(msg_text):

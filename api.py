@@ -134,4 +134,3 @@ def isGroupMember(chat_id, user_id):
         return True
     else:
         return False
-

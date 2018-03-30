@@ -2,6 +2,10 @@
     "sudoers": [
         49681384
     ],
+    "authorized_chats": [
+        -7016014,
+        -1001049208929
+    ],
     "authorized_users": [
         49681384,
         14160874,
@@ -24,6 +28,9 @@
         102544375,
         52433246,
         78977189
+    ],
+    "automatically_authorized_users": [
+
     ],
     "enabled_plugins": {
         "^[!/]melembra(?:@MercuriumBot)? ?([0-9]+d)?([0-9]+h)?([0-9]+m)?([0-9]+s)?(?: (.+))?$": "melenbra",

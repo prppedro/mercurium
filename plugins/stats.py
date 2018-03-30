@@ -3,7 +3,11 @@ from os import path
 from os import environ
 import requests
 import json
+import psycopg2 as psql
+from os import environ as env
 from api import send_message
+
+SQLPARAMS = "dbname=mercurium user=mercurium password=" + env['REBORNKEY']
 
 # Isso deve ser suficiente para transplantar as estatísticas para
 # um plugin independente
@@ -28,6 +32,12 @@ def return_statistics(chat):
         stats = stats[chat]
     else:
         return "n ten isotirco nesste xet ;()"
+
+    # Conecta-se à base SQL
+    #conn = psql.connect(SQLPARAMS)
+
+
+
 
     dictofdicts = {}
 
