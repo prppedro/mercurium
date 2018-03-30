@@ -57,8 +57,9 @@ def log(msg):
         log_str = ""
         log_str += msg["from"]["first_name"] + "(" + str(msg["from"]["id"]) + ")" + " enviou " + message_type + " "
 
-        if origin == "group":
-            log_str += "em \"" + msg["chat"]["title"] + "\""
+        # Suportando supergroups e outros no log
+        if origin == "group" or origin == "supergroup" or origin == "channel":
+            log_str += "em \"" + msg["chat"]["title"] + "\" (" + str(msg["chat"]["id"]) + ")"
         elif origin == "private":
             log_str += "em PRIVADO"
 
@@ -91,6 +92,8 @@ def is_authorized(msg):
             # Adiciona o indivíduo de vez, economizando essa consulta burra e redundante
             config.config["automatically_authorized_users"].append(msg["from"]["id"])
             config.save_config()
+            log(msg["from"]["first_name"] + "(" + str(msg["from"]["id"]) + ")" + \
+                " foi adicionado à lista de usuários autorizados. ")
             return True
         else:
             return False
