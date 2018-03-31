@@ -9,6 +9,7 @@ import threading
 import traceback
 import sys
 from time import gmtime
+import datetime as dt
 from calendar import timegm
 
 
@@ -54,7 +55,7 @@ def log(msg):
         origin = msg_origin(msg)
         message_type = msg_type(msg)
 
-        log_str = ""
+        log_str = "[" + dt.datetime.fromtimestamp(int(msg["date"])).strftime('%Y-%m-%d %H:%M:%S') + "] "
         log_str += msg["from"]["first_name"] + "(" + str(msg["from"]["id"]) + ")" + " enviou " + message_type + " "
 
         # Suportando supergroups e outros no log
