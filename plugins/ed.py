@@ -20,10 +20,13 @@ def talk_to_ed(message):
         "Content-Length": str(len(dictParams))
     }
 
+    # Implementação do Berti (16/MAR/2018)
     strResponse = requests.post(url=strEndpoint, data=dictParams, headers=dictHeader)
-    strResponse = strResponse.content.decode("utf-8")
+    strResponse = strResponse.content.decode("utf-8")[:-1]
 
-    return strResponse[:-1]
+    strResponse = re.sub(r'<a href=(.*)\">', '', strResponse).replace("</a>", "")
+
+    return strResponse
 
 def run_ed(msg):
     chat = msg["chat"]["id"]
