@@ -24,7 +24,7 @@ def on_msg_received(msg, matches):
     text = msg["text"]
 
     stats.do_statistics(msg)
-    ed.run_ed(msg)
+    #ed.run_ed(msg) -> A API foi para o saco. TODO: reparar
 
     # Precisamos manter log de todas as mensagens pro /xet e /wordcloud
     with open("data/log.txt", "a", encoding='utf-8') as f:
