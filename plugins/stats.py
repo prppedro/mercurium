@@ -102,7 +102,7 @@ def return_statistics(chat):
         vigencia = str(dt.datetime.today().strftime('%Y%m'))
         userdata = stats[user]
 
-        if "statsbymonth" in userdata and userdata["statsbymonth"][vigencia]:
+        if "statsbymonth" in userdata and vigencia in userdata["statsbymonth"]:
             dictofdicts[stats[user]["name"]] = stats[user]["statsbymonth"][vigencia]
 
     # Não sei programar em Python, logo farei a seguinte gambiarra:
