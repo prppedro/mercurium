@@ -11,6 +11,7 @@ import sys
 from time import gmtime
 import datetime as dt
 from calendar import timegm
+from random import random,randint
 
 
 logging.basicConfig(format='%(asctime)s.%(msecs)d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
@@ -215,6 +216,15 @@ def start_longpoll():
                     log("Mensagem desconhecida; ignorando.")
 
                 most_recent = update["update_id"] + 1
+
+        # De improviso, implementa um pedido de WS
+        fenestrao = "-1001049208929"
+        agora = dt.datetime.now()
+        probab = randint(0,9999)
+
+        if probab == 9999: 
+            send_message(fenestrao, "Já assistiu Diamond is Ubreakable, @Daniele_Harai?")
+
 
 
 def start_plugins():
