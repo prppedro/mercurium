@@ -12,11 +12,13 @@ import datetime as dt
 def on_msg_received(msg, matches):
     chat = msg["chat"]["id"]
 
+    print("O que chegou para mim: " + matches[1])
+
     # Implementação crua
-    if matches[0] == "/stats":
+    if matches[1] == "stats":
         result = return_statistics(chat)
         send_message(chat, result)
-    elif matches[0] == "/fullstats":
+    elif matches[1] == "fullstats":
         result = return_full_statistics(chat)
         send_message(chat, result)
 
