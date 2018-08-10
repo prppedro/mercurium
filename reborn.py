@@ -223,7 +223,7 @@ def start_longpoll():
         probab = randint(0,9999)
 
         if probab == 9999: 
-            send_message(fenestrao, "Já assistiu Diamond is Ubreakable, @Daniele_Harai?")
+            # send_message(fenestrao, "Já assistiu Diamond is Ubreakable, @Daniele_Harai?")
 
 
 
