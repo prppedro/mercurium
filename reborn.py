@@ -222,7 +222,7 @@ def start_longpoll():
         agora = dt.datetime.now()
         probab = randint(0,9999)
 
-        if probab == 9999: 
+        #if probab == 9999: 
             # send_message(fenestrao, "Já assistiu Diamond is Ubreakable, @Daniele_Harai?")
 
 
