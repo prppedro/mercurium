@@ -3,7 +3,7 @@ from os import path
 from os import environ
 import requests
 import json
-import psycopg2 as psql
+#import psycopg2 as psql
 from api import send_message
 import datetime as dt
 

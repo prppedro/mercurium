@@ -99,3 +99,24 @@ def on_msg_received(msg, matches):
 
     if match:
         send_audio_id(chat, "CQADAQADFQAD4CAoRdcd4TJB2ecNAg")
+
+    # /on
+    pattern = re.compile("^[!/]on(?:@MercuriumBot)?$")
+    match = pattern.search(text)
+
+    if match:
+        send_sticker(chat, "CAADAQADYQEAAsptnwnj5ix5ioNoNwI")
+
+    # /off
+    pattern = re.compile("^[!/]off(?:@MercuriumBot)?$")
+    match = pattern.search(text)
+
+    if match:
+        send_sticker(chat, "CAADAQADYgEAAsptnwlEQdht940XBgI")
+    
+    # /on
+    pattern = re.compile("^[Ee]stou on$")
+    match = pattern.search(text)
+
+    if match:
+        send_sticker(chat, "CAADAQADYQEAAsptnwnj5ix5ioNoNwI")

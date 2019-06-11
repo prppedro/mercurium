@@ -7,6 +7,7 @@ import bs4
 #                                                                             #
 #           Plugin: MultiSRO        Autor: Pedro T. R. Pinheiro               #
 #           Date: 16/10/2017        Version: 0.1b                             #
+#           Date: 01/12/2018        Version: 0.1c (Changed “API” source)      #
 #                                                                             #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
