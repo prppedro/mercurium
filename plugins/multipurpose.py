@@ -68,7 +68,7 @@ def on_msg_received(msg, matches):
     match = pattern.search(text)
 
     if match:
-        if chat = "-1001650218495": 
+        if chat == "-1001650218495": 
             send_message(chat, "@nariama, @Tadeu, @xisteaga, @Criativo, @CriaLuly, @mariitagli, @ThaCillo, @Dinoko, @Thameus")
         else: 
             send_message(chat, "@berti @beaea @getulhao @rauzao @xisteaga @axasdas @Garzarella")    
