@@ -69,7 +69,7 @@ def on_msg_received(msg, matches):
 
     if match:
         if chat == -1001650218495: 
-            send_message(chat, "@nariama, @Tadeu, @xisteaga, @Criativo, @CriaLuly, @mariitagli, @ThaCillo, @Dinoko, @Thameus")
+            send_message(chat, "@nariama, @Tadeu, @xisteaga, @Criativo, @CriaLuly, @mariitagli, @ThaCillo, @Dinoko, @Thameus, @oliveirasmaisa")
         else: 
             send_message(chat, "@berti @beaea @getulhao @rauzao @xisteaga @axasdas @Garzarella")    
 
